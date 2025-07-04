@@ -1,11 +1,10 @@
-from fastapi import FastAPI, Request
+# app.py
+from fastapi import FastAPI
+from models.urlSchemas import URLCheckRequest, URLCheckResponse
 from services.service_status import check_site_status
-from models.urlSchemas import URLCheckResponse
 
 app = FastAPI()
 
 @app.post("/check-url", response_model=URLCheckResponse)
-async def check_url(request: Request):
-    data = await request.json()
-    url = data.get("url")
-    return check_site_status(url)
+async def check_url(payload: URLCheckRequest):
+    return check_site_status(payload.url)

@@ -4,8 +4,7 @@ import requests
 from datetime import datetime
 from bson import ObjectId
 from connections.shared import submitted_urls_collection, failed_checks_collection
-from models.urlSchemas import URLCheckResponse 
-
+from models.urlSchemas import URLCheckResponse  # ✅ Import the schema
 
 def check_site_status(url: str) -> URLCheckResponse:
     try:
